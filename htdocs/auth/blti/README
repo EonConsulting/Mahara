@@ -1,0 +1,57 @@
+The LTI Authentication plugin allows Mahara to handle authentication
+through LTI (Learning Tools Interoperability).
+Author Antoni Bertran Bellido (abertranb@uoc.edu)
+
+Installation
+============
+
+http://url2mahara/auth/blti/login/login.php
+
+1) unzip in auth folder
+2) Log as administrator, go to Admin home - Extensions - Plugin Administration - Plugin type: auth
+3) Click over blti [Config]
+4) Configure BasicLTI Settings:
+
+- Overwritte user data: 
+ If true, user account data are updated on each login. That is first name, last name, email are overwritten by the blti data.
+ If false, user account data are taken from the blti fields only during account creation.
+- Default Group in Mahara: Select one of them, default_value is "Course: Controlled Membership"
+	Course: Controlled Membership
+	Course: Request Membership
+	Standard: Open Membership
+	Standard: Request Membership
+	Standard: Invite Only
+	Standard: Controlled Membership
+- Group is public: 
+ When plugin creates a Group defines if this is public or not
+- External users can add to the group:
+ When plugin creates a Group defines if users can auto add to group or not
+- Send notifications to members: 
+ When plugin creates a Group defines if checked, a notification will be sent to every group member whenever a member shares one of their Views with the group. Enabling this setting in very large groups can produce a lot of notifications.
+- Default Group Category: 
+ When plugin creates a Group defines if will be assignet this group to an existent category. The categories can be assigned to groups during group creation, and used to filter groups during searches.
+
+Settings
+========
+Full description:
+BasicLTI provides a mechanism to launch an external applications from Learning Management System. You can read more information here
+
+http://www.imsglobal.org/lti/blti/bltiv1p0/ltiBLTIimgv1p0.html
+
+This plugin is a provider tool, is based on UOC code. 
+
+The plugin has two configuration file:
+
+1. blti/configuration/mappingFields.cfg on  you can map the Elgg custom fields with LMS fields.
+	a) username_no_prefix: username prefix mode, if set to 0 get username with prefix (fta_username) if set 1 then doesn't have prefix (username).
+	b) mapping_as_admin: mapping as admin blti admin user, if not it will be a simple user in elgg
+	c) concat_resource_link_id: indicates if has to concat to group name the resource_link_id
+	d) number_of_fields: number of fields to Mapping
+	e) fieldX_source: indicate the name of LMS parameter, the X means the number of parameter (1 to number_of_fields)
+	f) fieldX_destination: indicate the name of Elgg parameter, the X means the number of parameter (1 to number_of_fields)
+
+2. blti/IMSBasicLTI/configuration/authorizedConsumersKey.cfg you can define the user and password, for example to define the consumer key "external" yo have to  define 
+consumer_key.external.enabled=1 
+consumer_key.external.secret=pwd_12345
+
+For more information about this project go http://sourceforge.net/projects/learningapps
